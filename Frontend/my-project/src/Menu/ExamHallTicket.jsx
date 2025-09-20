@@ -5,9 +5,9 @@ const ExamHallTicket = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        {/* <IonToolbar>
           <IonTitle>Ye hai Exam Hall Ticket page ka code</IonTitle>
-        </IonToolbar>
+        </IonToolbar> */}
       </IonHeader>
       <IonContent className="ion-padding">
         <h2>Welcome to the Exam Hall Ticket Page 🎫</h2>

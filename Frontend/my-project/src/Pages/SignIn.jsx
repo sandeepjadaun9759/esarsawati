@@ -1,18 +1,16 @@
-// SignIn.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./SignIn.css";
+import { Link, useHistory } from "react-router-dom";
 import { getDatabase, ref, get, child } from "firebase/database";
 import { app } from "../Firebase.js";
+import "./SignIn.css";
 
 const SignIn = () => {
+  const history = useHistory();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(false); // Top popup
+  const [success, setSuccess] = useState(false);
 
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validateMobile = (number) => /^[0-9]{10}$/.test(number);
   const normalizeEmail = (email) => (email ?? "").trim().toLowerCase();
   const normalizeContact = (contact) => String(contact ?? "").replace(/\D/g, "");
 
@@ -22,27 +20,8 @@ const SignIn = () => {
     setMessage("");
     setSuccess(false);
 
-    // Check for empty inputs
-    if (!trimmedIdentifier && !trimmedPassword) {
+    if (!trimmedIdentifier || !trimmedPassword) {
       setMessage("❌ Please enter Email/Mobile and Password");
-      return;
-    }
-    if (!trimmedIdentifier) {
-      setMessage("❌ Please enter Email or Mobile");
-      return;
-    }
-    if (!trimmedPassword) {
-      setMessage("❌ Please enter Password");
-      return;
-    }
-
-    // Validate email/mobile format
-    if (trimmedIdentifier.includes("@") && !validateEmail(trimmedIdentifier)) {
-      setMessage("❌ Please enter a valid email address");
-      return;
-    }
-    if (/^[0-9]+$/.test(trimmedIdentifier) && !validateMobile(trimmedIdentifier)) {
-      setMessage("❌ Mobile number must be 10 digits");
       return;
     }
 
@@ -57,8 +36,7 @@ const SignIn = () => {
       }
 
       const users = snapshot.val();
-      let userFound = false;
-      let passwordMatch = false;
+      let matchedUser = null;
 
       Object.keys(users).forEach((key) => {
         const user = users[key];
@@ -72,31 +50,27 @@ const SignIn = () => {
             (whatsapp === normalizeContact(trimmedIdentifier) ||
              fmobile === normalizeContact(trimmedIdentifier)));
 
-        if (match) {
-          userFound = true;
-          if (user.password && user.password.trim() === trimmedPassword) {
-            passwordMatch = true;
-          }
+        if (match && user.password && user.password.trim() === trimmedPassword) {
+          matchedUser = user;
         }
       });
 
-      if (!userFound) {
-        setIdentifier("");
+      if (!matchedUser) {
+        setMessage("❌ Invalid Email/WhatsApp/Mobile or Password");
         setPassword("");
-        setMessage("❌ Email, WhatsApp, or Mobile Number is incorrect");
         return;
       }
 
-      if (!passwordMatch) {
-        setPassword("");
-        setMessage("❌ Password is incorrect");
-        return;
-      }
+      // ✅ Save student info in localStorage
+      localStorage.setItem("studentName", matchedUser.name);
+      localStorage.setItem("classId", matchedUser.section_id || matchedUser.previous_class || "");
 
-      // Success
       setSuccess(true);
       setIdentifier("");
       setPassword("");
+
+      // Redirect to Fees page
+      history.push("/menubar/fees");
     } catch (err) {
       console.error("Firebase DB Error:", err);
       setMessage("❌ Error connecting to database");
@@ -105,9 +79,7 @@ const SignIn = () => {
 
   return (
     <div className="signin-page">
-      {/* Success toast */}
       {success && <div className="toast success">✅ User signed in successfully!</div>}
-
       <div>
         <h2>Sign In</h2>
         <form
@@ -131,7 +103,6 @@ const SignIn = () => {
           {message && <p className="error">{message}</p>}
           <button type="submit">Sign In</button>
         </form>
-
         <div className="toggle-text">
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </div>

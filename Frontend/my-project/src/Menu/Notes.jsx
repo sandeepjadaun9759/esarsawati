@@ -5,9 +5,9 @@ const Notes = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        {/* <IonToolbar>
           <IonTitle>Ye hai Notes page ka code</IonTitle>
-        </IonToolbar>
+        </IonToolbar> */}
       </IonHeader>
       <IonContent className="ion-padding">
         <h2>Welcome to the Notes Page 📝</h2>

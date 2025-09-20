@@ -5,9 +5,9 @@ const Subjects = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        {/* <IonToolbar>
           <IonTitle>Ye hai Subjects page ka code</IonTitle>
-        </IonToolbar>
+        </IonToolbar> */}
       </IonHeader>
       <IonContent className="ion-padding">
         <h2>Welcome to the Subjects Page 📖</h2>

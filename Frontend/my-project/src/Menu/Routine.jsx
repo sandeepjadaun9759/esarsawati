@@ -5,9 +5,9 @@ const Routine = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        {/* <IonToolbar>
           <IonTitle>Ye hai Routine page ka code</IonTitle>
-        </IonToolbar>
+        </IonToolbar> */}
       </IonHeader>
       <IonContent className="ion-padding">
         <h2>Welcome to the Routine Page 📅</h2>

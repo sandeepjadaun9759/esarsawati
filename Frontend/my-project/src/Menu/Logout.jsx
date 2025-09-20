@@ -10,9 +10,9 @@ const Logout = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        {/* <IonToolbar>
           <IonTitle>Ye hai Logout page ka code</IonTitle>
-        </IonToolbar>
+        </IonToolbar> */}
       </IonHeader>
       <IonContent className="ion-padding">
         <h2>Welcome to the Logout Page 🚪</h2>

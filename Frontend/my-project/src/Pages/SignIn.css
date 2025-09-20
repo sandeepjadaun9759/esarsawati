@@ -1,153 +1,135 @@
-/* Ensure html and body take full space */
-html, body {
-  height: 100%;
+/* SignIn.css */
+
+/* Global body styling */
+body, html {
   margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f6fa;
+  height: 100%;
 }
 
-/* Signin page container */
+/* SignIn page container */
 .signin-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Dark overlay */
-    url('/image.webp') no-repeat center center; /* Background image */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Form container */
+/* SignIn form card */
 .signin-page > div {
-  background-color: rgba(255, 255, 255, 0.5); /* Transparent form */
-  padding: 35px 30px;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 400px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.signin-page > div:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Heading styling */
-.signin-page h2 {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 22px;
-  color: #212121;
-  font-weight: 600;
+  position: relative;
 }
 
-/* Input fields styling */
-.signin-page input[type="text"],
-.signin-page input[type="password"] {
+/* Heading */
+.signin-page h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+  font-weight: 700;
+}
+
+/* Input fields */
+.signin-page input {
   width: 100%;
-  padding: 14px 18px;
+  padding: 12px 15px;
   margin-bottom: 15px;
-  border: 1px solid #bbb;
-  border-radius: 10px;
-  font-size: 15px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-.signin-page input[type="text"]::placeholder,
-.signin-page input[type="password"]::placeholder {
-  color: #888;
-  font-style: italic;
-}
-
-.signin-page input[type="text"]:focus,
-.signin-page input[type="password"]:focus {
-  border-color: #3f51b5;
-  box-shadow: 0 0 8px rgba(63, 81, 181, 0.3);
+.signin-page input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
   outline: none;
 }
 
-/* Button styling */
+/* Submit button */
 .signin-page button {
   width: 100%;
-  padding: 14px 18px;
-  background: linear-gradient(45deg, #3f51b5, #5c6bc0);
-  border: none;
-  border-radius: 10px;
+  padding: 12px;
+  background-color: #667eea;
   color: #fff;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .signin-page button:hover {
-  background: linear-gradient(45deg, #5c6bc0, #3f51b5);
+  background-color: #5a67d8;
   transform: translateY(-2px);
 }
 
-/* Error message styling */
-.error {
-  color: #d32f2f;
-  background-color: #ffebee;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin: 8px 0 15px 0;
-  border-left: 4px solid #d32f2f;
-}
-
-/* Toggle text styling */
+/* Toggle text (signup link) */
 .toggle-text {
-  text-align: center;
   margin-top: 20px;
   font-size: 14px;
   color: #555;
 }
 
-.toggle-link {
-  color: #3f51b5;
-  cursor: pointer;
-  font-weight: 500;
+.toggle-text a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.toggle-link:hover {
+.toggle-text a:hover {
   text-decoration: underline;
 }
 
-/* Responsive styling */
-@media (max-width: 768px) {
-  .signin-page {
-    padding-left: 20px;
-    justify-content: center;
-  }
+/* Error message styling */
+.error {
+  color: #e53e3e;
+  background-color: #ffe5e5;
+  border: 1px solid #f5c2c2;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: left;
 }
 
-@media (max-width: 500px) {
+/* Success toast */
+.toast.success {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #48bb78;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.5s ease forwards;
+}
+
+/* Toast slide animation */
+@keyframes slideDown {
+  0% { opacity: 0; transform: translate(-50%, -20px); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Responsive for small screens */
+@media (max-width: 480px) {
   .signin-page > div {
-    padding: 20px 15px;
-    max-width: 90%;
-  }
-  
-  .signin-page h2 {
-    font-size: 18px;
-  }
-  
-  .signin-page input[type="text"],
-  .signin-page input[type="password"],
-  .signin-page button {
-    padding: 12px 14px;
-    font-size: 13px;
-  }
-  
-  .toast {
-    font-size: 12px;
-    padding: 10px 15px;
+    padding: 30px 20px;
   }
 }

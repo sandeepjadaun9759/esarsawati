@@ -1,75 +1,99 @@
+/* Global reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ffffff; /* White background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Flex layout for sidebar + main content */
 .menu-layout {
-  display: flex;
-  height: 100vh;
+  display: flex;          /* Sidebar and content side by side */
+  height: 100vh;          /* Full viewport height */
+  overflow: hidden;       /* Prevent page scroll */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Sidebar */
 .sidebar {
-  width: 240px;
+  width: 100px;
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
   padding-top: 15px;
-  overflow-y: auto;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  overflow-y: auto;       /* Sidebar scroll if content is long */
+  box-shadow: 2px 0 8px rgba(13, 13, 13, 0.1);
   border-right: 1px solid #e0e0e0;
+  flex-shrink: 0;         /* Prevent shrinking */
 }
 
 /* Sidebar buttons */
 .sidebar-btn {
-  margin: 6px 12px;
-  padding: 14px 12px;
+  margin: 3px 8px;
+  padding: 7px 6px;
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 40px;
   justify-content: flex-start;
-  --background: transparent;
-  --box-shadow: none;
-  font-size: 18px; /* increased text size */
-  font-weight: 500;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 15px;
+  font-weight: 500px !important;
+  cursor: pointer;
+  color: black;
+  
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Icon size */
 .sidebar-btn ion-icon {
-  font-size: 26px; /* increased icon size */
-  margin-right: 14px;
+  font-size: 26px;
+  margin-right: 15px;
   color: #495057;
   transition: color 0.3s ease;
 }
 
 /* Text styling */
 .btn-text {
-  color: #495057;
+  color: #f0f1f3;
+  font-weight: 400 !important;
   transition: color 0.3s ease, background-color 0.3s ease;
   padding: 3px 6px;
   border-radius: 6px;
-  cursor: pointer; /* only text */
+  cursor: pointer;
 }
 
 /* Hover effect */
 .sidebar-btn:hover {
-  background-color: #e0e7ff;
+  background-color: #0c0d0cd2 !important;
   transform: translateX(4px);
+  color: white;
 }
 
 .sidebar-btn:hover ion-icon {
-  color: #1e40af;
+  color: #f0f0f2e7;
 }
 
 .sidebar-btn:hover .btn-text {
-  color: #1e40af;
-  font-weight: 600;
+  color: #f0f1f3 !important;
+  font-weight: 700 !important;
 }
 
-/* Active state simulation */
+/* Active state */
+.sidebar-btn.active,
+.sidebar-btn:active {
+  background-color: #f5f5f8 !important;
+}
+
+.sidebar-btn.active .btn-text,
 .sidebar-btn:active .btn-text {
-  color: #ffffff;
-  background-color: #1e3a8a;
+  color: #ffffff !important;
+  font-weight: 700 !important;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling for sidebar */
 .sidebar::-webkit-scrollbar {
   width: 6px;
 }
@@ -85,8 +109,8 @@
 
 /* Main content */
 .main-content {
-  flex: 1;
+  flex: 1;                /* Take remaining space */
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: auto;       /* Vertical scroll here only */
   background-color: #ffffff;
 }
